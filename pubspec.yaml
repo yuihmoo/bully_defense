@@ -61,10 +61,11 @@ flutter:
   assets:
     - images/icon_shield1.png
     - images/icon_shield2.png
-    - images/icon_BD1.png
-    - images/icon_BD2.png
-    - images/icon_BD3.png
-    - images/icon_BD4.png
+    - images/icon_bd1.png
+    - images/icon_bd2.png
+    - images/icon_bd3.png
+    - images/icon_bd4.png
+    - images/icon_bd5.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

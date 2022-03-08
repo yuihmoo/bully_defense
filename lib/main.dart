@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,7 +37,7 @@ class BottomNavigator extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          leading: Image.asset('images/icon_BD1.png'),
+          leading: Image.asset('images/icon_bd5.png'),
           leadingWidth: 50,
           title: const Text(
             '사이버 폭력 자가진단 앱',

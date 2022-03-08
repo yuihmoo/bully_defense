@@ -3,7 +3,7 @@
    <application
         android:label="Bully Defense(사이버 폭력 자가진단)"
         android:name="${applicationName}"
-        android:icon="@mipmap/icon_shield2">
+        android:icon="@mipmap/icon_bd5">
         <activity
             android:name=".MainActivity"
             android:exported="true"
