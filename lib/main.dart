@@ -1,3 +1,5 @@
+import 'package:bully_defense/screen/home_screen.dart';
+import 'package:bully_defense/screen/community_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,8 +24,8 @@ class MyApp extends StatelessWidget {
 
 class BottomNavigator extends StatelessWidget {
   final List<Widget> _widgetOptions = [
-    const Center(child: Text('홈 화면')),
-    const Center(child: Text('커뮤니티 화면')),
+    const Center(child: HomeScreen()),
+    const Center(child: CommunityScreen()),
     const Center(child: Text('자가진단 화면')),
     const Center(child: Text('회원정보 화면')),
     const Center(child: Text('신고/상담 화면')),
