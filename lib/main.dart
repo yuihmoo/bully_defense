@@ -39,17 +39,18 @@ class BottomNavigator extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          leading: Image.asset('images/icon_bd5.png'),
-          leadingWidth: 50,
-          title: const Text(
-            '사이버 폭력 자가진단 앱',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+          leading: const Icon(Icons.menu),
+          title: const Text('사이버 폭력 자가진단 앱'),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Icon(Icons.search),
             ),
-          ),
+            Icon(Icons.more_vert),
+          ],
           backgroundColor: Colors.blueAccent,
         ),
+
         bottomNavigationBar: const TabBar(
           labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
           tabs: <Widget>[
