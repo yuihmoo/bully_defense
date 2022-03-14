@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410649068163",
+    "project_id": "bully-defense",
+    "storage_bucket": "bully-defense.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410649068163:android:f0daee87d87eb2985591b6",
+        "android_client_info": {
+          "package_name": "com.example.bully_defense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410649068163-4ll7ib022gppbe1hbqae1p6kea95ehq4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFrG6ynosgyc1WeZbdaGSRxWB45XBNyFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410649068163-4ll7ib022gppbe1hbqae1p6kea95ehq4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

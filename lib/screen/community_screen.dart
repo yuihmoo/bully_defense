@@ -1,8 +1,9 @@
+import 'package:bully_defense/screen/board_write_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:bully_defense/model/board.dart';
 
 import 'board_detail_screen.dart';
-
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
@@ -12,136 +13,32 @@ class CommunityScreen extends StatefulWidget {
 }
 
 class _CommunityScreenState extends State<CommunityScreen> {
-  List<Board> boards = [
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'yuihmoo',
-      'title': '공지사항',
-      'content': '유용재',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'clean_brain',
-      'title': '가입 인사',
-      'content': '노상현 주임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'topsjwg',
-      'title': '가입 인사드립니다.',
-      'content': '정원규 선임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'pjupju',
-      'title': '반갑습니다',
-      'content': '박진억 책임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'yuihmoo',
-      'title': '공지사항',
-      'content': '유용재',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'clean_brain',
-      'title': '가입 인사',
-      'content': '노상현 주임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'topsjwg',
-      'title': '가입 인사드립니다.',
-      'content': '정원규 선임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'pjupju',
-      'title': '반갑습니다',
-      'content': '박진억 책임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'yuihmoo',
-      'title': '공지사항',
-      'content': '유용재',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'clean_brain',
-      'title': '가입 인사',
-      'content': '노상현 주임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'topsjwg',
-      'title': '가입 인사드립니다.',
-      'content': '정원규 선임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-    Board.fromMap({
-      'boardNum' : 1,
-      'id': 'pjupju',
-      'title': '반갑습니다',
-      'content': '박진억 책임',
-      'like': true,
-      'likeCounts': 1,
-      'writeDate' : DateTime.now(),
-      'modifyDate' : DateTime.now(),
-    }),
-  ];
+  FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  late Stream<QuerySnapshot> streamData;
 
   @override
   void initState() {
     super.initState();
+    streamData = fireStore.collection('board').snapshots();
+  }
+
+  Widget _fetchData(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('board').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return const LinearProgressIndicator();
+        return _buildBody(context, snapshot.data!.docs);
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    return _fetchData(context);
+  }
+
+  Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
+    List<Board> boards = snapshot.map((b) => Board.fromSnapshot(b)).toList();
     return Scaffold(
       body: ListView.builder(
         itemCount: boards.length,
@@ -155,8 +52,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BoardDetailScreen(board: boards[index])
-                ),
+                    builder: (context) =>
+                        BoardDetailScreen(board: boards[index])),
               );
             },
           );
@@ -165,7 +62,12 @@ class _CommunityScreenState extends State<CommunityScreen> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         backgroundColor: Colors.blueAccent,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const BoardWriteScreen()),
+          );
+        },
       ),
     );
   }

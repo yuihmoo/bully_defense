@@ -1,8 +1,11 @@
 import 'package:bully_defense/screen/home_screen.dart';
 import 'package:bully_defense/screen/community_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -10,6 +13,7 @@ class MyApp extends StatelessWidget {
   static const String _title = '사이버 폭력 자가진단 앱';
 
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

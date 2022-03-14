@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Board {
   int boardNum;
@@ -7,13 +7,14 @@ class Board {
   String content;
   bool like;
   int likeCounts;
-  DateTime writeDate;
-  DateTime modifyDate;
+  Timestamp writeDate;
+  Timestamp modifyDate;
+  DocumentReference reference;
 
   Board(this.boardNum, this.id, this.title, this.content, this.like,
-      this.likeCounts, this.writeDate, this.modifyDate);
+      this.likeCounts, this.writeDate, this.modifyDate, this.reference);
 
-  Board.fromMap(Map<String, dynamic> map)
+  Board.fromMap(Map<String, dynamic> map, {required this.reference})
       : boardNum = map['boardNum'],
         id = map['id'],
         title = map['title'],
@@ -22,6 +23,9 @@ class Board {
         likeCounts = map['likeCounts'],
         writeDate = map['writeDate'],
         modifyDate = map['modifyDate'];
+
+  Board.fromSnapshot(DocumentSnapshot snapshot) :
+        this.fromMap(snapshot.data(), reference: snapshot.reference);
 
   @override
   String toString() => "Board<$id:$title>";

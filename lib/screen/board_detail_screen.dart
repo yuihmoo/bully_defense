@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../model/board.dart';
 
 class BoardDetailScreen extends StatelessWidget {
@@ -11,6 +12,15 @@ class BoardDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(board.title),
+        backgroundColor: Colors.blueAccent,
+        actions: <Widget>[
+          PopupMenuButton(
+              itemBuilder: (context) => [
+                 PopupMenuItem(child: const Text('수정'), onTap: () {}),
+                 PopupMenuItem(child: const Text('삭제'), onTap: () {}),
+              ],
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
